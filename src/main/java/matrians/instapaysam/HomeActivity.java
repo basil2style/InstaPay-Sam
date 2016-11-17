@@ -21,7 +21,6 @@ public class HomeActivity extends AppCompatActivity {
     private final int CODE_LOGIN = 1;
     private final int CODE_REGISTER = 2;
 
-    //Hai test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

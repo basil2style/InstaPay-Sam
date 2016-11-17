@@ -18,6 +18,7 @@ android {
         }
     }
     return 0;
+    sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/Payment'] } }
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
