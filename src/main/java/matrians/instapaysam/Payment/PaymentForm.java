@@ -1,4 +1,4 @@
-package matrians.instapaysam;
+package matrians.instapaysam.Payment;
 
 /**
  * Created by basil on 2016-11-17.
