@@ -50,7 +50,7 @@
             android:name=".camera.CameraSingleFrag"
             android:parentActivityName=".ScanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        
+
     </application>
 
 </manifest>
