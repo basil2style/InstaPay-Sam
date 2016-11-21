@@ -3,11 +3,18 @@ package matrians.instapaysam.Payment;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
+import com.stripe.android.compat.AsyncTask;
 import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
+import com.stripe.model.Charge;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import matrians.instapaysam.R;
 import matrians.instapaysam.TokenList;
@@ -78,5 +85,42 @@ public class PaymentPage extends FragmentActivity {
 
     private TokenList getTokenList() {
         return (TokenList)(getSupportFragmentManager().findFragmentById(R.id.token_list));
+    }
+
+    public void chargeCustomer(Token token) {
+        final Map<String, Object> chargeParams = new HashMap<String, Object>();
+        chargeParams.put("amount", 400);
+        chargeParams.put("currency", "usd");
+        chargeParams.put("card", token.getId()); // obtained with Stripe.js
+
+        new AsyncTask<Void, Void, Void>() {
+
+            Charge charge;
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    com.stripe.Stripe.apiKey = API_KEY;
+                    charge = Charge.create(chargeParams);
+
+                    Log.i("IsCharged", charge.getCreated().toString());
+
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    showAlert("Exception while charging the card!",
+                            e.getLocalizedMessage());
+                }
+                return null;
+            }
+
+            protected void onPostExecute(Void result) {
+
+              //  Toast.makeText(OnlinePaymentActivity.this, "Card Charged : " + charge.getCreated() + "\nPaid : " +charge.getPaid(), Toast.LENGTH_LONG).show();
+            };
+
+        }.execute();
+
     }
 }
