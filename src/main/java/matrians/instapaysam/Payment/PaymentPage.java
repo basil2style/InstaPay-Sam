@@ -46,6 +46,7 @@ public class PaymentPage extends FragmentActivity {
                 form.getCvc());
         card.setCurrency(form.getCurrency());
 
+
         boolean validation = card.validateCard();
         if (validation) {
             startProgress();
@@ -86,10 +87,11 @@ public class PaymentPage extends FragmentActivity {
         DialogFragment fragment = ErrorDialogFragment.newInstance(R.string.validationErrors, error);
         fragment.show(getSupportFragmentManager(), "error");
     }
-
+/*
     private TokenList getTokenList() {
         return (TokenList)(getSupportFragmentManager().findFragmentById(R.id.token_list));
     }
+    */
 
     public void chargeCustomer(Token token) {
         final Map<String, Object> chargeParams = new HashMap<String, Object>();
@@ -108,6 +110,7 @@ public class PaymentPage extends FragmentActivity {
                     charge = Charge.create(chargeParams);
 
                     Log.i("IsCharged", charge.getCreated().toString());
+
 
 
                 } catch (Exception e) {
@@ -146,4 +149,6 @@ public class PaymentPage extends FragmentActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+
 }
