@@ -1,8 +1,10 @@
 package matrians.instapaysam.Payment;
 
+import android.content.DialogInterface;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import matrians.instapaysam.TokenList;
 public class PaymentPage extends FragmentActivity {
 
     public static final String PUBLISHABLE_KEY = "pk_test_2fSnV8n9LxbUr7khTyenCqOS";
+    private static final String API_KEY = "sk_test_H7XJ6W6LIoUud0tMUm5mOSjy";
 
     private ProgressDialogFragment progressFragment;
 
@@ -51,7 +54,8 @@ public class PaymentPage extends FragmentActivity {
                     PUBLISHABLE_KEY,
                     new TokenCallback() {
                         public void onSuccess(Token token) {
-                            getTokenList().addToList(token);
+                            //getTokenList().addToList(token);
+                            chargeCustomer(token);
                             finishProgress();
                         }
                         public void onError(Exception error) {
@@ -87,9 +91,9 @@ public class PaymentPage extends FragmentActivity {
         return (TokenList)(getSupportFragmentManager().findFragmentById(R.id.token_list));
     }
 
-   /* public void chargeCustomer(Token token) {
+    public void chargeCustomer(Token token) {
         final Map<String, Object> chargeParams = new HashMap<String, Object>();
-        chargeParams.put("amount", 400);
+        chargeParams.put("amount", 4000);
         chargeParams.put("currency", "usd");
         chargeParams.put("card", token.getId()); // obtained with Stripe.js
 
@@ -122,5 +126,24 @@ public class PaymentPage extends FragmentActivity {
 
         }.execute();
 
-    }*/
+    }
+
+    private void showAlert(String title, String message) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // dialog.dismiss();
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }
