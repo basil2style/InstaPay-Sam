@@ -87,7 +87,7 @@ public class PaymentPage extends FragmentActivity {
         return (TokenList)(getSupportFragmentManager().findFragmentById(R.id.token_list));
     }
 
-    public void chargeCustomer(Token token) {
+   /* public void chargeCustomer(Token token) {
         final Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("amount", 400);
         chargeParams.put("currency", "usd");
@@ -122,5 +122,5 @@ public class PaymentPage extends FragmentActivity {
 
         }.execute();
 
-    }
+    }*/
 }

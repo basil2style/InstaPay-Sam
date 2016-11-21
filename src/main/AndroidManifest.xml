@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="matrians.instapaysam">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
@@ -46,10 +45,7 @@
             android:name=".ScanActivity"
             android:parentActivityName=".VendorsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".camera.CameraSingleFrag"
-            android:parentActivityName=".ScanActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
 
     </application>
 
