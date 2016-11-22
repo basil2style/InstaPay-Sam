@@ -142,4 +142,7 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="save1">Save</string>
+    <string name="no_favoritesitems">There is not tokenlist</string>
+    <string name="no_favorites_msg">NULL</string>
+    <string name="no_favorites_items">Zero Size</string>
 </resources>
