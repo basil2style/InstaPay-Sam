@@ -72,7 +72,9 @@ public class AddPayment extends AppCompatActivity {
                         public void onSuccess(Token token) {
                             Toast.makeText(AddPayment.this, token.getId(), Toast.LENGTH_SHORT).show();
                             // sendToServer(token.getId());
-                            
+
+
+
                         }
 
                         public void onError(Exception error) {
