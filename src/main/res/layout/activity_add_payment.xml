@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="matrians.instapaysam.Payment.AddPayment">
+
     <com.braintreepayments.cardform.view.CardForm
         android:id="@+id/bt_card_form"
         android:layout_width="match_parent"
