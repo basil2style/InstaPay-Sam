@@ -12,7 +12,7 @@
         android:layout_marginBottom="20dp" />
 
     <Button
-        android:id="@+id/checkout_card"
+        android:id="@+id/save_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
