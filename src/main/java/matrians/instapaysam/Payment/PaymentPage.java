@@ -13,7 +13,13 @@ import com.stripe.android.TokenCallback;
 import com.stripe.android.compat.AsyncTask;
 import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
+import com.stripe.exception.APIConnectionException;
+import com.stripe.exception.APIException;
+import com.stripe.exception.AuthenticationException;
+import com.stripe.exception.CardException;
+import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
+import com.stripe.model.Customer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +62,19 @@ public class PaymentPage extends FragmentActivity {
                     new TokenCallback() {
                         public void onSuccess(Token token) {
                             //getTokenList().addToList(token);
-                            chargeCustomer(token);
+                            try {
+                                chargeCustomer(token);
+                            } catch (CardException e) {
+                                e.printStackTrace();
+                            } catch (APIException e) {
+                                e.printStackTrace();
+                            } catch (AuthenticationException e) {
+                                e.printStackTrace();
+                            } catch (InvalidRequestException e) {
+                                e.printStackTrace();
+                            } catch (APIConnectionException e) {
+                                e.printStackTrace();
+                            }
                             finishProgress();
                         }
                         public void onError(Exception error) {
@@ -93,11 +111,24 @@ public class PaymentPage extends FragmentActivity {
     }
     */
 
-    public void chargeCustomer(Token token) {
+    public void chargeCustomer(Token token) throws CardException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+
+
+
+        // Create a Customer
+        Map<String, Object> customerParams = new HashMap<String, Object>();
+        customerParams.put("source", token);
+        customerParams.put("description", "First Customer");
+        customerParams.put("email","basiltalias@gmail.com");
+
+
+        Customer customer = Customer.create(customerParams);
+
         final Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("amount", 4000);
         chargeParams.put("currency", "usd");
-        chargeParams.put("card", token.getId()); // obtained with Stripe.js
+        //chargeParams.put("card", token.getId()); // obtained with Stripe.js
+        chargeParams.put("customer",customer);
 
         new AsyncTask<Void, Void, Void>() {
 
