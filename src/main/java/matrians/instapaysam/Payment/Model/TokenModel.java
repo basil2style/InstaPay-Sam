@@ -8,6 +8,14 @@ public class TokenModel {
     private String lastFourCard;
     private String tokenId;
 
+    public TokenModel(String lastFour, String id) {
+        super();
+        this.lastFourCard = lastFour;
+        this.tokenId = id;
+
+
+    }
+
 
     public String getLastFourCard() {
         return lastFourCard;

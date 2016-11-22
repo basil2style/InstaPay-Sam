@@ -14,6 +14,10 @@ import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
 import com.stripe.exception.AuthenticationException;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import matrians.instapaysam.Payment.Model.TokenModel;
 import matrians.instapaysam.R;
 
 import static matrians.instapaysam.Payment.PaymentPage.PUBLISHABLE_KEY;
@@ -22,12 +26,15 @@ public class AddPayment extends AppCompatActivity {
 
     private CardForm cardForm;
     private Button save_button;
-
+    SharedPreference sharedPreference;
+    List<TokenModel> tokenModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payment);
+        sharedPreference  = new SharedPreference();
+
 
         cardForm = (CardForm) findViewById(R.id.bt_card_form);
         save_button = (Button) findViewById(R.id.save_card);
@@ -64,6 +71,10 @@ public class AddPayment extends AppCompatActivity {
     private void getStripeToken(String cardNumber, String expirationMonth, String expirationYear, String cvv) {
         Card card = new Card(cardNumber, Integer.parseInt(expirationMonth), Integer.parseInt(expirationYear), cvv);
         Stripe stripe = null;
+        int cardNum = Integer.valueOf(cardNumber);
+        final int lastfour = cardNum % 10000;
+        final String lastFour = String.valueOf(lastfour);
+
         try {
             stripe = new Stripe(PUBLISHABLE_KEY);
             stripe.createToken(
@@ -72,8 +83,14 @@ public class AddPayment extends AppCompatActivity {
                         public void onSuccess(Token token) {
                             Toast.makeText(AddPayment.this, token.getId(), Toast.LENGTH_SHORT).show();
                             // sendToServer(token.getId());
+                            //sharedPreference.addFavorite(getApplicationContext(),);
 
+                            TokenModel tokenModel = new TokenModel(lastFour,token.getId());
 
+                            tokenModelList = new ArrayList<TokenModel>();
+                            tokenModelList.add(tokenModel);
+
+                            sharedPreference.addFavorite(getApplicationContext(),tokenModel);
 
                         }
 
