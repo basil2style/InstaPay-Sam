@@ -8,8 +8,12 @@ import android.support.v4.app.DialogFragment;
 
 import matrians.instapaysam.R;
 
-
+/**
+ Team Matrians
+ **/
+ 
 public class ErrorDialogFragment extends DialogFragment {
+
     public static ErrorDialogFragment newInstance(int titleId, String message) {
         ErrorDialogFragment fragment = new ErrorDialogFragment();
 
