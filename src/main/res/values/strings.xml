@@ -57,6 +57,11 @@
     <string name="cvc">CVC</string>
 
     <string name="ok">OK</string>
+    <string name="paymentresult">PaymentSuccess</string>
+    <string name="Thanknote">Thank You for using InstaPay</string>
+    <string name="goBack">Go Back</string>
+    <string name="thanksNote">Thank You for using InstaPay</string>
+    <string name="back">Go Back</string>
 
     <string-array name="currency_array">
         <item>Currency (optional)</item>

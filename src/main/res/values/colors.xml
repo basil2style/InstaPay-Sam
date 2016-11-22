@@ -12,7 +12,7 @@
     <color name="colorPrimaryDark">#616161</color>
     <color name="colorPrimaryLight">#F5F5F5</color>
     <color name="colorAccent">#448AFF</color>
-    <color name="colorPrimaryText">#212121</color>
+    <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#212121</color>
     <color name="colorDivider">#BDBDBD</color>
