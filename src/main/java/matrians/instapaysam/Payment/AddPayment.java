@@ -1,5 +1,6 @@
 package matrians.instapaysam.Payment;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -71,9 +72,9 @@ public class AddPayment extends AppCompatActivity {
     private void getStripeToken(String cardNumber, String expirationMonth, String expirationYear, String cvv) {
         Card card = new Card(cardNumber, Integer.parseInt(expirationMonth), Integer.parseInt(expirationYear), cvv);
         Stripe stripe = null;
-        int cardNum = Integer.valueOf(cardNumber);
-        final int lastfour = cardNum % 10000;
-        final String lastFour = String.valueOf(lastfour);
+        //int cardNum = Integer.valueOf(cardNumber);
+        //final int lastfour = cardNum % 10000;
+        final String lastFour = cardNumber.substring(cardNumber.length()-4);
 
         try {
             stripe = new Stripe(PUBLISHABLE_KEY);
@@ -81,7 +82,7 @@ public class AddPayment extends AppCompatActivity {
                     card,
                     new TokenCallback() {
                         public void onSuccess(Token token) {
-                            Toast.makeText(AddPayment.this, token.getId(), Toast.LENGTH_SHORT).show();
+
                             // sendToServer(token.getId());
                             //sharedPreference.addFavorite(getApplicationContext(),);
 
@@ -91,6 +92,10 @@ public class AddPayment extends AppCompatActivity {
                             tokenModelList.add(tokenModel);
 
                             sharedPreference.addFavorite(getApplicationContext(),tokenModel);
+                            Toast.makeText(AddPayment.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(AddPayment.this,PaymentList.class);
+                            startActivity(intent);
 
                         }
 

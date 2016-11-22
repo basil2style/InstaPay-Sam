@@ -41,7 +41,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.stripe:stripe-android:+'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.github.cooltechworks:CreditCardView:v1.0.2'
+    //compile 'com.github.cooltechworks:CreditCardView:v1.0.2'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:support-vector-drawable:24.2.1'
     compile 'com.braintreepayments:card-form:3.0.2'
