@@ -43,7 +43,7 @@ public class AddPayment extends AppCompatActivity {
             public void onClick(View v) {
                 if (cardForm.isValid()) {
                     getStripeToken(cardForm.getCardNumber(), cardForm.getExpirationMonth(), cardForm.getExpirationYear(), cardForm.getCvv());
-                    
+
                 } else {
                     cardForm.validate();
                 }
@@ -72,6 +72,7 @@ public class AddPayment extends AppCompatActivity {
                         public void onSuccess(Token token) {
                             Toast.makeText(AddPayment.this, token.getId(), Toast.LENGTH_SHORT).show();
                             // sendToServer(token.getId());
+                            
                         }
 
                         public void onError(Exception error) {
