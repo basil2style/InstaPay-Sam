@@ -113,7 +113,7 @@ public class PaymentList extends AppCompatActivity {
         final Map<String, Object> chargeParams = new HashMap<String, Object>();
         chargeParams.put("amount", 4000);
         chargeParams.put("currency", "usd");
-        chargeParams.put("card", token.getId()); // obtained with Stripe.js
+   //     chargeParams.put("card", token.getId()); // obtained with Stripe.js
 //        chargeParams.put("customer",customer);
 
         new AsyncTask<Void, Void, Void>() {
